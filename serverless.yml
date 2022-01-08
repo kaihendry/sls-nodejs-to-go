@@ -3,13 +3,21 @@ frameworkVersion: "2 || 3"
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  region: ap-southeast-1
   lambdaHashingVersion: "20201221"
 
 functions:
   hello:
+    runtime: nodejs12.x
     handler: handler.hello
     events:
       - httpApi:
           path: /
+          method: get
+  world:
+    runtime: go1.x
+    handler: world/sls-two-languages
+    events:
+      - httpApi:
+          path: /world
           method: get
